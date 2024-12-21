@@ -6,12 +6,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AdministratorModule } from './administrator/administrator.module';
-import { CommitteeMemberModule } from './committee-member/committee-member.module';
+import { BoardMemberModule } from './board-member/board-member.module';
 import { VoterModule } from './voter/voter.module';
 import { AuthModule } from './auth/auth.module';
-import { ElectionCommitteeModule } from './election-committee/election-committee.module';
+import { ElectionBoardModule } from './election-board/election-board.module';
 import { ConstituencyService } from './constituency/constituency.service';
 import { ConstituencyModule } from './constituency/constituency.module';
+import { VotingCardModule } from './voting-card/voting-card.module';
+import { ElectionCommitteeModule } from './election-committee/election-committee.module';
+import { CandidateService } from './candidate/candidate.service';
+import { CandidateModule } from './candidate/candidate.module';
+import { CardAssignmentModule } from './card-assignment/card-assignment.module';
+import { VoteService } from './vote/vote.service';
+import { VoteModule } from './vote/vote.module';
+import { UserMessageModule } from './user-message/user-message.module';
 
 @Module({
   imports: [
@@ -38,13 +46,19 @@ import { ConstituencyModule } from './constituency/constituency.module';
     }),
     UsersModule,
     AdministratorModule,
-    CommitteeMemberModule,
+    BoardMemberModule,
     VoterModule,
     AuthModule,
-    ElectionCommitteeModule,
+    ElectionBoardModule,
     ConstituencyModule,
+    VotingCardModule,
+    ElectionCommitteeModule,
+    CandidateModule,
+    CardAssignmentModule,
+    VoteModule,
+    UserMessageModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, CandidateService, VoteService],
 })
 export class AppModule {}

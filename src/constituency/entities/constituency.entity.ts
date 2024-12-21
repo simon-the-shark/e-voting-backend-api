@@ -1,6 +1,13 @@
-import { ElectionCommittee } from 'src/election-committee/entities/election-committee.entity';
+import { Candidate } from 'src/candidate/entities/candidate.entity';
+import { ElectionBoard } from 'src/election-board/entities/election-board.entity';
 import { VotingType } from 'src/types/voting-type.enum';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Constituency {
@@ -17,8 +24,11 @@ export class Constituency {
   votingType: VotingType;
 
   @ManyToMany(
-    () => ElectionCommittee,
-    (electionCommittee) => electionCommittee.constituencies,
+    () => ElectionBoard,
+    (electionBoard) => electionBoard.constituencies,
   )
-  electionCommittees: ElectionCommittee[];
+  electionBoard: ElectionBoard[];
+
+  @OneToMany(() => Candidate, (candidate) => candidate.constituency)
+  candidates: Candidate[];
 }

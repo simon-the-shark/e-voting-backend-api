@@ -1,4 +1,3 @@
 export class ElectionCommitteeDto {
-  readonly address: string;
-  readonly number: number;
+  readonly name: string;
 }

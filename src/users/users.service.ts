@@ -29,17 +29,17 @@ export class UsersService {
 
   getRoles(user: User): Promise<UserRole[]> {
     const ifAdmin = user.administrator;
-    const ifCommitteeMember = user.committeeMember;
+    const ifBoardMember = user.boardMember;
     const ifVoter = user.voter;
 
-    return Promise.all([ifAdmin, ifCommitteeMember, ifVoter]).then(
-      ([admin, committeeMember, voter]) => {
+    return Promise.all([ifAdmin, ifBoardMember, ifVoter]).then(
+      ([admin, boardMember, voter]) => {
         const roles: UserRole[] = [];
         if (admin) {
           roles.push(UserRole.Administrator);
         }
-        if (committeeMember) {
-          roles.push(UserRole.CommitteeMember);
+        if (boardMember) {
+          roles.push(UserRole.BoardMember);
         }
         if (voter) {
           roles.push(UserRole.Voter);

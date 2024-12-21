@@ -5,9 +5,11 @@ import {
   JoinColumn,
   Column,
   ManyToOne,
+  ManyToMany,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
-import { ElectionCommittee } from 'src/election-committee/entities/election-committee.entity';
+import { ElectionBoard } from 'src/election-board/entities/election-board.entity';
+import { VotingCard } from 'src/voting-card/entities/voting-card.entity';
 
 @Entity()
 export class Voter {
@@ -33,9 +35,9 @@ export class Voter {
   @JoinColumn()
   user: User;
 
-  @ManyToOne(
-    () => ElectionCommittee,
-    (electionCommittee) => electionCommittee.voters,
-  )
-  electionCommittee: ElectionCommittee;
+  @ManyToOne(() => ElectionBoard, (electionBoard) => electionBoard.voters)
+  electionBoard: ElectionBoard;
+
+  @ManyToMany(() => VotingCard, (votingCard) => votingCard.voters)
+  votingCards: VotingCard[];
 }

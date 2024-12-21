@@ -1,6 +1,6 @@
 import { IsString } from 'class-validator';
 
-export class CreateCommitteeMemberDto {
+export class CreateBoardMemberDto {
   @IsString()
   readonly pesel: string;
 }

@@ -1,7 +1,14 @@
 import { Administrator } from 'src/administrator/entities/administrator.entity';
-import { CommitteeMember } from 'src/committee-member/entities/committee-member.entity';
+import { BoardMember } from 'src/board-member/entities/board-member.entity';
+import { UserMessage } from 'src/user-message/entities/user-message.entity';
 import { Voter } from 'src/voter/entities/voter.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  OneToMany,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -16,11 +23,14 @@ export class User {
   })
   administrator?: Administrator;
 
-  @OneToOne(() => CommitteeMember, (committeeMember) => committeeMember.user, {
+  @OneToOne(() => BoardMember, (boardMember) => boardMember.user, {
     nullable: true,
   })
-  committeeMember?: CommitteeMember;
+  boardMember?: BoardMember;
 
   @OneToOne(() => Voter, (voter) => voter.user, { nullable: true })
   voter?: Voter;
+
+  @OneToMany(() => UserMessage, (userMessage) => userMessage.user)
+  userMessages: UserMessage[];
 }

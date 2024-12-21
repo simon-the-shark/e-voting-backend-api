@@ -10,10 +10,10 @@ import {
 } from 'typeorm';
 
 import { User } from '../../users/entities/user.entity';
-import { ElectionCommittee } from 'src/election-committee/entities/election-committee.entity';
+import { ElectionBoard } from 'src/election-board/entities/election-board.entity';
 
 @Entity()
-export class CommitteeMember {
+export class BoardMember {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -21,9 +21,6 @@ export class CommitteeMember {
   @JoinColumn()
   user: User;
 
-  @ManyToOne(
-    () => ElectionCommittee,
-    (electionCommittee) => electionCommittee.committeeMembers,
-  )
-  electionCommittee: ElectionCommittee;
+  @ManyToOne(() => ElectionBoard, (electionBoard) => electionBoard.boardMembers)
+  electionBoard: ElectionBoard;
 }
