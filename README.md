@@ -30,8 +30,11 @@ e-voting-backend-api
 
 ## Project setup
 
+.env example is given in .development.env. In real development change file to .env.development.
+
 ```bash
 $ pnpm install
+$ docker-compose up --build
 ```
 
 ## Compile and run the project
