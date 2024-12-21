@@ -12,10 +12,10 @@ export class CreateUserDto {
   @IsString()
   readonly pesel: string;
 
-  @IsArray()
-  @ArrayNotEmpty()
-  @ArrayUnique()
-  @Transform(({ value }) => value.map((role: string) => role.toLowerCase()))
-  @IsEnum(UserRole, { each: true })
-  readonly roles: UserRole[];
+  // @IsArray()
+  // @ArrayNotEmpty()
+  // @ArrayUnique()
+  // @Transform(({ value }) => value.map((role: string) => role.toLowerCase()))
+  // @IsEnum(UserRole, { each: true })
+  // readonly roles: UserRole[];
 }

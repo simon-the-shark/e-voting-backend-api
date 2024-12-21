@@ -9,6 +9,9 @@ import { AdministratorModule } from './administrator/administrator.module';
 import { CommitteeMemberModule } from './committee-member/committee-member.module';
 import { VoterModule } from './voter/voter.module';
 import { AuthModule } from './auth/auth.module';
+import { ElectionCommitteeModule } from './election-committee/election-committee.module';
+import { ConstituencyService } from './constituency/constituency.service';
+import { ConstituencyModule } from './constituency/constituency.module';
 
 @Module({
   imports: [
@@ -38,6 +41,8 @@ import { AuthModule } from './auth/auth.module';
     CommitteeMemberModule,
     VoterModule,
     AuthModule,
+    ElectionCommitteeModule,
+    ConstituencyModule,
   ],
   controllers: [AppController],
   providers: [AppService],
