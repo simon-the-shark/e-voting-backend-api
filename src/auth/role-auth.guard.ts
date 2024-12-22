@@ -37,7 +37,7 @@ export class RolesGuard implements CanActivate {
       } else {
         throw new ForbiddenException('Brak odpowiednich uprawnień');
       }
-    } catch (e) {
+    } catch {
       throw new ForbiddenException('Token jest nieprawidłowy lub wygasł');
     }
   }

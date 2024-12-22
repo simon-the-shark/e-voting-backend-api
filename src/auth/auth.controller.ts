@@ -1,4 +1,10 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpException,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
@@ -9,7 +15,7 @@ export class AuthController {
   async login(@Body() body: { pesel: string }) {
     const user = await this.authService.validateUser(body.pesel);
     if (!user) {
-      throw new Error('Niepoprawne dane logowania');
+      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     }
     return this.authService.login(user);
   }
