@@ -36,6 +36,7 @@ export class Voter {
   user: User;
 
   @ManyToOne(() => ElectionBoard, (electionBoard) => electionBoard.voters)
+  @JoinColumn()
   electionBoard: ElectionBoard;
 
   @ManyToMany(() => VotingCard, (votingCard) => votingCard.voters)

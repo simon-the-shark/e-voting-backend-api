@@ -22,5 +22,6 @@ export class BoardMember {
   user: User;
 
   @ManyToOne(() => ElectionBoard, (electionBoard) => electionBoard.boardMembers)
+  @JoinColumn()
   electionBoard: ElectionBoard;
 }

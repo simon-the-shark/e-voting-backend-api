@@ -5,6 +5,7 @@ import { Vote } from 'src/vote/entities/vote.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToMany,
   ManyToOne,
   OneToOne,
@@ -29,12 +30,14 @@ export class Candidate {
   electionProgram: string;
 
   @ManyToOne(() => Constituency, (constituency) => constituency.candidates)
+  @JoinColumn()
   constituency: Constituency;
 
   @ManyToOne(
     () => ElectionCommittee,
     (electionCommittee) => electionCommittee.candidates,
   )
+  @JoinColumn()
   electionCommittee: ElectionCommittee;
 
   @OneToOne(() => CardAssignment, (cardAssignment) => cardAssignment.candidate)
