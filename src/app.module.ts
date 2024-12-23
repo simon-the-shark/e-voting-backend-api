@@ -10,7 +10,6 @@ import { BoardMemberModule } from './board-member/board-member.module';
 import { VoterModule } from './voter/voter.module';
 import { AuthModule } from './auth/auth.module';
 import { ElectionBoardModule } from './election-board/election-board.module';
-import { ConstituencyService } from './constituency/constituency.service';
 import { ConstituencyModule } from './constituency/constituency.module';
 import { VotingCardModule } from './voting-card/voting-card.module';
 import { ElectionCommitteeModule } from './election-committee/election-committee.module';
