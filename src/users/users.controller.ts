@@ -29,4 +29,9 @@ export class UsersController {
   remove(@Param('pesel') pesel: string) {
     return this.usersService.remove(pesel);
   }
+
+  @Get(':pesel/roles')
+  findRoles(@Param('pesel') pesel: string) {
+    return this.usersService.getRoles(pesel);
+  }
 }

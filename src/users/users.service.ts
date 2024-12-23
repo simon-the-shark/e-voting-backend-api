@@ -15,6 +15,7 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
+    console.log(createUserDto);
     const user = this.usersRepository.create(createUserDto);
     return this.usersRepository.save(user);
   }
@@ -24,10 +25,19 @@ export class UsersService {
   }
 
   remove(pesel: string) {
+    console.log(pesel);
     return this.usersRepository.delete({ pesel });
   }
 
-  getRoles(user: User): Promise<UserRole[]> {
+  async getRoles(pesel: string): Promise<UserRole[]> {
+    console.log(pesel);
+    const user = await this.usersRepository.findOne({
+      where: { pesel },
+      relations: ['administrator', 'boardMember', 'voter'],
+    });
+    const allUsers = await this.usersRepository.find();
+    console.log(user);
+    console.log(allUsers);
     const ifAdmin = user.administrator;
     const ifBoardMember = user.boardMember;
     const ifVoter = user.voter;

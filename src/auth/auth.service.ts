@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   async login(user: User) {
-    const roles = await this.usersService.getRoles(user);
+    const roles = await this.usersService.getRoles(user.pesel);
 
     const payload = { pesel: user.pesel, sub: user.id, roles: roles };
     return {
