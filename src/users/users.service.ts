@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { User } from './entities/user.entity';
 
-import { CreateUserDto } from './dto/create-user.dto';
 import { Repository } from 'typeorm';
 import { UserRole } from './entities/user-role.entity';
 
@@ -12,11 +11,6 @@ export class UsersService {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>,
   ) {}
-
-  async create(createUserDto: CreateUserDto): Promise<User> {
-    const user = this.usersRepository.create(createUserDto);
-    return this.usersRepository.save(user);
-  }
 
   findOne(pesel: string): Promise<User | undefined> {
     return this.usersRepository.findOne({ where: { pesel } });
