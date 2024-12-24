@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { AuthDto } from 'src/auth/dto/auth.dto';
 import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 
@@ -18,7 +19,7 @@ export class AuthService {
     }
   }
 
-  async login(user: User) {
+  async login(user: User): Promise<AuthDto> {
     const roles = await this.usersService.getRoles(user.pesel);
     const payload = { pesel: user.pesel, sub: user.id, roles: roles };
     return {

@@ -13,10 +13,8 @@ import { ElectionBoardModule } from './election-board/election-board.module';
 import { ConstituencyModule } from './constituency/constituency.module';
 import { VotingCardModule } from './voting-card/voting-card.module';
 import { ElectionCommitteeModule } from './election-committee/election-committee.module';
-import { CandidateService } from './candidate/candidate.service';
 import { CandidateModule } from './candidate/candidate.module';
 import { CardAssignmentModule } from './card-assignment/card-assignment.module';
-import { VoteService } from './vote/vote.service';
 import { VoteModule } from './vote/vote.module';
 import { UserMessageModule } from './user-message/user-message.module';
 
@@ -58,6 +56,6 @@ import { UserMessageModule } from './user-message/user-message.module';
     UserMessageModule,
   ],
   controllers: [AppController],
-  providers: [AppService, CandidateService, VoteService],
+  providers: [AppService],
 })
 export class AppModule {}

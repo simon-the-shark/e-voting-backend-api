@@ -24,7 +24,7 @@ export class ElectionBoard {
 
   @ManyToMany(
     () => Constituency,
-    (constituency) => constituency.electionBoard,
+    (constituency) => constituency.electionBoards,
     {
       onDelete: 'RESTRICT',
       onUpdate: 'RESTRICT',

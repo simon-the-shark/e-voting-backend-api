@@ -24,7 +24,7 @@ export class VotingCardController {
     const user = req.user as User;
     return z
       .array(VotingCardDto)
-      .parse(await this.votingCardService.getVotingCardsByUserId(user.id));
+      .parse(await this.votingCardService.getAllAvailableForUser(user.id));
   }
 
   @Roles(UserRole.Voter)
@@ -34,12 +34,16 @@ export class VotingCardController {
     @Req() req: Request,
   ): Promise<VotingCardDetailsDto> {
     const user = req.user as User;
-    const votingCardId = parseInt(id, 10);
-    if (!this.votingCardService.verifyPermissions(votingCardId, user.id)) {
+    const votingCardId = Number(id);
+    if (
+      !this.votingCardService.verifyVotingCardPermissions(votingCardId, user.id)
+    ) {
       throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     }
-    const details =
-      await this.votingCardService.getVotingCardDetails(votingCardId);
+    const details = await this.votingCardService.getVotingCardDetails(
+      votingCardId,
+      user.id,
+    );
     return VotingCardDetailsDto.parse(details);
   }
 }

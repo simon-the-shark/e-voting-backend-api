@@ -7,6 +7,7 @@ export const VotingCardDto = z.object({
   votingType: VotingTypeZod,
   instriuctions: z.string(),
   title: z.string(),
+  hasVoted: z.boolean(),
 });
 
 export type VotingCardDto = z.infer<typeof VotingCardDto>;

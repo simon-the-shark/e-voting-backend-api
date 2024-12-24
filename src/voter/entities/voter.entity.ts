@@ -35,10 +35,13 @@ export class Voter {
   @JoinColumn()
   user: User;
 
-  @ManyToOne(() => ElectionBoard, (electionBoard) => electionBoard.voters)
-  @JoinColumn()
-  electionBoard: ElectionBoard;
+  @ManyToOne(() => ElectionBoard, (electionBoard) => electionBoard.voters, {
+    nullable: true,
+  })
+  @JoinColumn({ name: 'electionBoardId' })
+  electionBoard: ElectionBoard | null;
 
   @ManyToMany(() => VotingCard, (votingCard) => votingCard.voters)
+  @JoinColumn()
   votingCards: VotingCard[];
 }

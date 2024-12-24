@@ -21,6 +21,7 @@ export const VotingCardDetailsDto = z.object({
   instriuctions: z.string(),
   title: z.string(),
   cardAssignment: z.array(CardAssignmentSchema),
+  hasVoted: z.boolean(),
 });
 
 export type VotingCardDetailsDto = z.infer<typeof VotingCardDetailsDto>;

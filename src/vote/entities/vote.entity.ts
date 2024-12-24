@@ -1,7 +1,7 @@
 import { Candidate } from 'src/candidate/entities/candidate.entity';
 import { VotingCard } from 'src/voting-card/entities/voting-card.entity';
 import {
-  Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   JoinTable,
@@ -15,7 +15,7 @@ export class Vote {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @CreateDateColumn()
   timestamp: Date;
 
   @ManyToOne(() => VotingCard, (votingCard) => votingCard.votes)
