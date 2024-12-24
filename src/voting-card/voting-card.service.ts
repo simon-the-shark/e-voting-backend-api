@@ -12,7 +12,7 @@ export class VotingCardService {
     private voterService: VoterService,
   ) {}
 
-  async getVotingCardsById(userId: number) {
+  async getVotingCardsByUserId(userId: number) {
     const voter = await this.voterService.findOneByUserId(userId);
     if (!voter) {
       return null;
@@ -23,6 +23,24 @@ export class VotingCardService {
           id: voter.id,
         },
       },
+    });
+  }
+  async verifyPermissions(votingCardId: number, userId: number) {
+    const votingCard = await this.votingCardRepository.findOne({
+      where: {
+        id: votingCardId,
+      },
+      relations: ['voters', 'voters.user'],
+    });
+    return votingCard.voters.some((voter) => voter.user.id === userId);
+  }
+
+  async getVotingCardDetails(votingCardId: number) {
+    return this.votingCardRepository.findOne({
+      where: {
+        id: votingCardId,
+      },
+      relations: ['cardAssignment', 'cardAssignment.candidate'],
     });
   }
 }

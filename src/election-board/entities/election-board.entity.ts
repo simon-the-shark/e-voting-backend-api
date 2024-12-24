@@ -4,6 +4,7 @@ import { Voter } from 'src/voter/entities/voter.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
   OneToMany,
@@ -40,5 +41,6 @@ export class ElectionBoard {
   boardMembers: BoardMember[];
 
   @OneToMany(() => Voter, (voter) => voter.electionBoard)
+  @JoinColumn()
   voters: Voter[];
 }
