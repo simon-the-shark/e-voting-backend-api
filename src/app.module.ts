@@ -40,7 +40,7 @@ import { UserMessageModule } from './user-message/user-message.module';
         database: configService.get<string>('DATABASE_NAME'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true,
-        dropSchema: true,
+        dropSchema: false,
       }),
     }),
     UsersModule,
