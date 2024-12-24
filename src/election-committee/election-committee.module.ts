@@ -6,6 +6,6 @@ import { ElectionCommittee } from './entities/elecition-committee.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([ElectionCommittee])],
   providers: [ElectionCommitteeService],
-  exports: [ElectionCommitteeService]
+  exports: [ElectionCommitteeService],
 })
 export class ElectionCommitteeModule {}

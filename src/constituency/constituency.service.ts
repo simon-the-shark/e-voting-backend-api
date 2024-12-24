@@ -11,8 +11,7 @@ export class ConstituencyService {
     private constituencyRepository: Repository<Constituency>,
   ) {}
 
-    async create(constituency: ConstituencyDto): Promise<Constituency> {
-        return this.constituencyRepository.save(constituency);
-    }
-
+  async create(constituency: ConstituencyDto): Promise<Constituency> {
+    return this.constituencyRepository.save(constituency);
+  }
 }

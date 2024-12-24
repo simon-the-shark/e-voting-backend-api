@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Type } from 'class-transformer';
 import { Vote } from './entities/vote.entity';
 import { VoteService } from './vote.service';
 
