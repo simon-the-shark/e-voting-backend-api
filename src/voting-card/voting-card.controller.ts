@@ -19,6 +19,6 @@ export class VotingCardController {
   @Get()
   async getAllForCurrentUser(@Req() req: Request) {
     const user = req.user as User;
-    return await this.votingCardService.getVotingCardById(user.id);
+    return await this.votingCardService.getVotingCardsById(user.id);
   }
 }

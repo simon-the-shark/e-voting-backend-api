@@ -12,12 +12,12 @@ export class VotingCardService {
     private voterService: VoterService,
   ) {}
 
-  async getVotingCardById(userId: number) {
+  async getVotingCardsById(userId: number) {
     const voter = await this.voterService.findOneByUserId(userId);
     if (!voter) {
       return null;
     }
-    return this.votingCardRepository.findOne({
+    return this.votingCardRepository.find({
       where: {
         voters: {
           id: voter.id,

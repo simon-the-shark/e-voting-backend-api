@@ -4,7 +4,6 @@ import { Voter } from 'src/voter/entities/voter.entity';
 import {
   Column,
   Entity,
-  JoinColumn,
   JoinTable,
   ManyToMany,
   OneToMany,
