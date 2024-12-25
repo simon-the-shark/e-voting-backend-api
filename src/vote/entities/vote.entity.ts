@@ -23,10 +23,6 @@ export class Vote {
   votingCard: VotingCard;
 
   @ManyToMany(() => Candidate, (candidate) => candidate.votes)
-  @JoinTable({
-    name: 'vote_candidate',
-    joinColumn: { name: 'vote_id', referencedColumnName: 'id' },
-    inverseJoinColumn: { name: 'candidate_id', referencedColumnName: 'id' },
-  })
+  @JoinTable()
   candidates: Candidate[];
 }
