@@ -4,9 +4,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ElectionCommittee } from './entities/elecition-committee.entity';
 import { ElectionCommitteeController } from './election-committee.controller';
 import { AuthModule } from 'src/auth/auth.module';
+import { UserMessageModule } from 'src/user-message/user-message.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ElectionCommittee]), AuthModule],
+  imports: [
+    UserMessageModule,
+    TypeOrmModule.forFeature([ElectionCommittee]),
+    AuthModule,
+  ],
   providers: [ElectionCommitteeService],
   exports: [ElectionCommitteeService],
   controllers: [ElectionCommitteeController],

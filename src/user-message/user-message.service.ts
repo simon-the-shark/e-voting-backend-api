@@ -11,7 +11,7 @@ export class UserMessageService {
     private readonly userMessageRepository: Repository<UserMessage>,
   ) {}
   async createMessage(dto: CreateMessageDto) {
-    const newOne = await this.userMessageRepository.create({
+    const newOne = this.userMessageRepository.create({
       message: dto.message,
       isRead: false,
       user: {
