@@ -13,4 +13,7 @@ export class ElectionCommitteeService {
   async findAll(): Promise<ElectionCommittee[]> {
     return await this.electionCommitteeRepository.find();
   }
+  async findOne(id: number): Promise<ElectionCommittee> {
+    return await this.electionCommitteeRepository.findOneBy({ id });
+  }
 }

@@ -9,7 +9,9 @@ describe('ElectionCommitteeController', () => {
       controllers: [ElectionCommitteeController],
     }).compile();
 
-    controller = module.get<ElectionCommitteeController>(ElectionCommitteeController);
+    controller = module.get<ElectionCommitteeController>(
+      ElectionCommitteeController,
+    );
   });
 
   it('should be defined', () => {
