@@ -12,7 +12,7 @@ export class UserMessageService {
   ) {}
   async createMessage(dto: CreateMessageDto) {
     const newOne = this.userMessageRepository.create({
-      message: dto.message,
+      ...dto,
       isRead: false,
       user: {
         id: dto.userId,

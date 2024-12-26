@@ -21,4 +21,7 @@ export class UserMessage {
 
   @Column()
   isRead: boolean;
+
+  @Column()
+  isDangerous: boolean;
 }
