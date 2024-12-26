@@ -7,7 +7,7 @@ export const CandidateDto = z.object({
   lastName: z.string(),
   party: z.string(),
   electionProgram: z.string(),
-  electionCommittee: ElectionCommitteeDto,
+  electionCommittee: ElectionCommitteeDto.nullable(),
 });
 
 export type CandidateDto = z.infer<typeof CandidateDto>;

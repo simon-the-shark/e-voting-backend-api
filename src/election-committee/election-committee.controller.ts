@@ -29,6 +29,7 @@ export class ElectionCommitteeController {
       this.userMessageService.createMessage({
         message: 'There are no election committees',
         userId: user.id,
+        isDangerous: true,
       });
     }
     return elements;

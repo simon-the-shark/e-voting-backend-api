@@ -16,6 +16,10 @@ export class UsersService {
     return this.usersRepository.findOne({ where: { pesel } });
   }
 
+  findById(id: number): Promise<User | undefined> {
+    return this.usersRepository.findOne({ where: { id } });
+  }
+
   remove(pesel: string) {
     return this.usersRepository.delete({ pesel });
   }
