@@ -25,10 +25,10 @@ export class UserMessageController {
     @Param('id') id: string,
     @Body() markReadMessageDto: MarkReadMessageDto,
   ): Promise<void> {
-    const user = req.user as User;
-    const message = await this.userMessageService.findOneById(Number(id));
-
-    if (message.user.id !== user.id) {
+    const user = req.user;
+    const mId = parseInt(id, 10);
+    const message = await this.userMessageService.findOneById(mId);
+    if (message.user.id !== (user?.id ?? user.userId)) {
       throw new Error('You can only mark your own messages as read');
     }
     await this.userMessageService.markAsRead(message.id);

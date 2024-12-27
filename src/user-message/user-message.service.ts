@@ -46,6 +46,7 @@ export class UserMessageService {
       where: {
         id: id,
       },
+      relations: ['user'],
     });
   }
 }
