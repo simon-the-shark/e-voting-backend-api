@@ -16,4 +16,11 @@ export class ElectionBoardService {
       relations: ['constituencies'],
     });
   }
+
+  async findOne(id: number): Promise<ElectionBoardDto> {
+    return await this.repository.findOne({
+      where: { id },
+      relations: ['constituencies'],
+    });
+  }
 }
