@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Constituency } from './entities/constituency.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { ConstituencyDto } from './dto/constituency.dto';
 
 @Injectable()
@@ -13,5 +13,13 @@ export class ConstituencyService {
 
   async findAll(): Promise<ConstituencyDto[]> {
     return await this.repository.find();
+  }
+
+  async findByIds(ids: number[]): Promise<Constituency[]> {
+    return await this.repository.find({
+      where: {
+        id: In(ids),
+      },
+    });
   }
 }
