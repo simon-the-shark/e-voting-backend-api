@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { ElectionBoard } from './entities/election-board.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ElectionBoardDto } from './dto/election-board.dto';
 
 @Injectable()
 export class ElectionBoardService {
@@ -10,7 +11,9 @@ export class ElectionBoardService {
     private readonly repository: Repository<ElectionBoard>,
   ) {}
 
-  async findAll(): Promise<ElectionBoard[]> {
-    return await this.repository.find();
+  async findAll(): Promise<ElectionBoardDto[]> {
+    return await this.repository.find({
+      relations: ['constituencies'],
+    });
   }
 }
