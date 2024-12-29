@@ -39,12 +39,16 @@ export class VotingCardService {
     if (!voter) {
       return null;
     }
-    const cards =
-      voter.electionBoard?.constituencies.map((c) => c.votingCard) ?? [];
+    const cards = (
+      voter.electionBoard?.constituencies.map((c) => c.votingCard) ?? []
+    ).filter(Boolean);
     const votedFor = await this.getAlreadyVotedFor(userId);
+    if (cards.length === 0) {
+      return [];
+    }
     return cards.map((card) => ({
       ...card,
-      hasVoted: votedFor.some((it) => it.id === card.id),
+      hasVoted: votedFor.some((it) => it?.id === card?.id),
     }));
   }
 
