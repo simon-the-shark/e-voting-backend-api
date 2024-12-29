@@ -16,13 +16,13 @@ export class CandidateController {
   constructor(private readonly candidateService: CandidateService) {}
 
   @Get()
-  @Roles(UserRole.Administrator)
+  @Roles(UserRole.BoardMember)
   async getAllCandidates(): Promise<CandidateDto[]> {
     return z.array(CandidateDto).parse(await this.candidateService.findAll());
   }
 
   @Patch(':id/committee')
-  @Roles(UserRole.Administrator)
+  @Roles(UserRole.BoardMember)
   async updateCandidateCommittee(
     @Param('id') id: string,
     @Body() updateCandidateCommitteeDto: UpdateCandidateCommitteeDto,

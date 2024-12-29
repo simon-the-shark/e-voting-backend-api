@@ -19,7 +19,7 @@ export class ElectionCommitteeController {
   ) {}
 
   @Get()
-  @Roles(UserRole.Administrator)
+  @Roles(UserRole.BoardMember)
   async getAll(@Req() req): Promise<ElectionCommitteeDto[]> {
     const elements = z
       .array(ElectionCommitteeDto)
