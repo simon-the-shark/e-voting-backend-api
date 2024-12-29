@@ -17,9 +17,12 @@ import { CandidateModule } from './candidate/candidate.module';
 import { CardAssignmentModule } from './card-assignment/card-assignment.module';
 import { VoteModule } from './vote/vote.module';
 import { UserMessageModule } from './user-message/user-message.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { ScheduledTaskService } from './scheduled-task/scheduled-task.service';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       envFilePath: '.development.env',
       isGlobal: true,
@@ -56,6 +59,6 @@ import { UserMessageModule } from './user-message/user-message.module';
     UserMessageModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ScheduledTaskService],
 })
 export class AppModule {}

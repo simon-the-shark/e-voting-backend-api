@@ -1,4 +1,5 @@
 import { CardAssignment } from 'src/card-assignment/entities/card-assignment.entity';
+import { Constituency } from 'src/constituency/entities/constituency.entity';
 import { ElectionCommittee } from 'src/election-committee/entities/elecition-committee.entity';
 import { Vote } from 'src/vote/entities/vote.entity';
 import {
@@ -42,4 +43,8 @@ export class Candidate {
   @ManyToMany(() => Vote, (vote) => vote.candidates)
   @JoinColumn()
   votes: Vote[];
+
+  @ManyToOne(() => Constituency, (constituency) => constituency.candidates)
+  @JoinColumn()
+  constituency: Constituency;
 }

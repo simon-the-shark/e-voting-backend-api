@@ -1,3 +1,4 @@
+import { Candidate } from 'src/candidate/entities/candidate.entity';
 import { ElectionBoard } from 'src/election-board/entities/election-board.entity';
 import { VotingType } from 'src/types/voting-type.enum';
 import { VotingCard } from 'src/voting-card/entities/voting-card.entity';
@@ -6,6 +7,7 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -33,4 +35,7 @@ export class Constituency {
   @OneToOne(() => VotingCard, (votingCard) => votingCard.constituency)
   @JoinTable()
   votingCard: VotingCard;
+
+  @OneToMany(() => Candidate, (candidate) => candidate.constituency)
+  candidates: Candidate[];
 }

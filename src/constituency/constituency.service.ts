@@ -15,6 +15,12 @@ export class ConstituencyService {
     return await this.repository.find();
   }
 
+  async findAllWithRelations(): Promise<Constituency[]> {
+    return await this.repository.find({
+      relations: ['candidates'],
+    });
+  }
+
   async findByIds(ids: number[]): Promise<Constituency[]> {
     return await this.repository.find({
       where: {
