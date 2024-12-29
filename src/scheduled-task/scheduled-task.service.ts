@@ -29,6 +29,16 @@ export class ScheduledTaskService {
         console.log(`Taka karta juz instnieje: ${existing.id}`);
         continue;
       }
+
+      if (!candidates || candidates.length === 0) {
+        await this.userMessageService.createMessageForAllAdmins({
+          message: `Błąd generacji karty do głosowania. Wykryto brak kandydatów w okręgu id: ${constituency.id}`,
+          isDangerous: true,
+        });
+        console.log('Brak kandydatów w okręgu');
+        continue;
+      }
+
       const votingCard = await this.votingCardService.create({
         votingType,
         title: `Głosowanie na ${votingType}`,
