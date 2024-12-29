@@ -28,7 +28,6 @@ export class CandidateController {
     @Body() updateCandidateCommitteeDto: UpdateCandidateCommitteeDto,
   ) {
     const numberId = parseInt(id, 10);
-    console.log('numberId', numberId);
     return this.candidateService.updateCommittee(
       numberId,
       updateCandidateCommitteeDto,

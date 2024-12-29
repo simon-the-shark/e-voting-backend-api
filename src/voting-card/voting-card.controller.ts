@@ -23,7 +23,6 @@ export class VotingCardController {
   async getAllForCurrentUser(@Req() req: Request): Promise<VotingCardDto[]> {
     const user = req.user as User;
     const res = await this.votingCardService.getAllAvailableForUser(user.id);
-    console.log(res);
     return z.array(VotingCardDto).parse(res);
   }
 

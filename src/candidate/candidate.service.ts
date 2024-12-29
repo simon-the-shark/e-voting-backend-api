@@ -24,14 +24,11 @@ export class CandidateService {
     updateCandidateCommitteeDto: UpdateCandidateCommitteeDto,
   ) {
     const { electionCommitteeId } = updateCandidateCommitteeDto;
-    console.log('electionCommitteeId', electionCommitteeId);
     const committe =
       await this.electionCommitteeService.findOne(electionCommitteeId);
     const candidate = await this.candidateRepository.findOne({
       where: { id },
     });
-    console.log('candidate', candidate);
-    console.log('committe', committe);
     candidate.electionCommittee = committe;
     await this.candidateRepository.save(candidate);
   }
