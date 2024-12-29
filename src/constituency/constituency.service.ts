@@ -12,6 +12,7 @@ export class ConstituencyService {
   ) {}
 
   async verifyVotingCardRules(constituency: Constituency) {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     const fullObject = await this.repository.findOne({
       where: {
         id: constituency.id,
@@ -26,9 +27,7 @@ export class ConstituencyService {
     const cardRows = fullObject.votingCard.cardAssignment;
     const candidatesOnCard = cardRows.map((row) => row.candidate.id);
     const numbersOnCard = cardRows.map((row) => row.numberOnCard);
-    console.log(numbersOnCard);
-    console.log(candidatesOnCard);
-    console.log(fullObject.candidates);
+
     // check if numbers are in proper sequence 1..n
     for (let i = 1; i <= candidatesOnCard.length; i++) {
       if (!numbersOnCard.includes(i)) {

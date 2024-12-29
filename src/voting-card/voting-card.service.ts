@@ -8,7 +8,6 @@ import { DeepPartial } from 'typeorm';
 import { VotingType } from 'src/types/voting-type.enum';
 import { Candidate } from 'src/candidate/entities/candidate.entity';
 import { CardAssignmentService } from 'src/card-assignment/card-assignment.service';
-import { CardAssignment } from 'src/card-assignment/entities/card-assignment.entity';
 import { Constituency } from 'src/constituency/entities/constituency.entity';
 
 @Injectable()
@@ -34,17 +33,20 @@ export class VotingCardService {
   }
 
   async shuffleCandidates(votingCard: VotingCard, candidates: Candidate[]) {
-    const cardAssignment: CardAssignment[] = [];
     for (let i = 0; i < candidates.length; i++) {
-      cardAssignment.push(
-        await this.cardAssignmentService.create({
-          candidate: candidates[i],
-          numberOnCard: i,
-        }),
-      );
+      await this.cardAssignmentService.create({
+        candidateId: candidates[i].id,
+        numberOnCard: i + 1,
+        votingCardId: votingCard.id,
+      });
     }
-    votingCard.cardAssignment = cardAssignment;
-    this.votingCardRepository.save(votingCard);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    return this.votingCardRepository.findOne({
+      where: {
+        id: votingCard.id,
+      },
+      relations: ['cardAssignment'],
+    });
   }
 
   async getAlreadyVotedFor(userId: number) {

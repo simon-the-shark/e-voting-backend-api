@@ -12,6 +12,7 @@ export class CardAssignmentService {
   ) {}
 
   async create(dto: CreateAssignmentDto) {
-    return this.repository.create(dto);
+    const obj = this.repository.create(dto);
+    this.repository.save(obj);
   }
 }

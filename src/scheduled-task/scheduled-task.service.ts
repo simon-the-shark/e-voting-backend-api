@@ -37,22 +37,28 @@ export class ScheduledTaskService {
         instriuctions:
           'Aby oddać głos, zaznacz jednego kandyta. Mozesz jednak oddac tez głos niewazny.',
       });
-      await this.votingCardService.shuffleCandidates(votingCard, candidates);
-      console.log(
-        `Poprawnie utworzono kartę do głosowania id: ${votingCard.id} z ${votingCard.cardAssignment.length} kandydatami`,
+      const newCard = await this.votingCardService.shuffleCandidates(
+        votingCard,
+        candidates,
       );
       const verifyCard =
         await this.constituencyService.verifyVotingCardRules(constituency);
       if (verifyCard) {
         await this.userMessageService.createMessageForAllAdmins({
-          message: `Poprawnie utworzono kartę do głosowania id: ${votingCard.id} z ${votingCard.cardAssignment.length} kandydatami`,
+          message: `Poprawnie utworzono kartę do głosowania id: ${votingCard.id} z ${newCard.cardAssignment.length} kandydatami`,
           isDangerous: false,
         });
+        console.log(
+          `Poprawnie utworzono kartę do głosowania id: ${votingCard.id} z ${newCard.cardAssignment.length} kandydatami`,
+        );
       } else {
         await this.userMessageService.createMessageForAllAdmins({
           message: `Utworzono kartę do głosowania id: ${votingCard.id}; ale nie spełnia wymaganych reguł. Zweryfikuj i popraw ręcznie`,
           isDangerous: true,
         });
+        console.log(
+          `Niepoprawnie utworzono kartę do głosowania id: ${votingCard.id}`,
+        );
       }
     }
   }

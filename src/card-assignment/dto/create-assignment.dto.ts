@@ -1,9 +1,14 @@
-import { IsInt, IsNotEmpty, IsPositive } from 'class-validator';
-import { Candidate } from 'src/candidate/entities/candidate.entity';
+import { IsInt, IsPositive } from 'class-validator';
 
 export class CreateAssignmentDto {
-  @IsNotEmpty()
-  candidate: Candidate;
+  @IsInt()
+  @IsPositive()
+  votingCardId: number;
+
+  @IsInt()
+  @IsPositive()
+  candidateId: number;
+
   @IsInt()
   @IsPositive()
   numberOnCard: number;
