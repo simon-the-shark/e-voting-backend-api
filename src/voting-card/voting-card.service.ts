@@ -34,7 +34,6 @@ export class VotingCardService {
   }
 
   async shuffleCandidates(votingCard: VotingCard, candidates: Candidate[]) {
-    this.cardAssignmentService.clear(votingCard.cardAssignment);
     const cardAssignment: CardAssignment[] = [];
     for (let i = 0; i < candidates.length; i++) {
       cardAssignment.push(

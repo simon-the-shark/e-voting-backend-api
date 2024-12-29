@@ -14,8 +14,4 @@ export class CardAssignmentService {
   async create(dto: CreateAssignmentDto) {
     return this.repository.create(dto);
   }
-
-  async clear(data: CardAssignment[]) {
-    if (data !== undefined) return this.repository.remove(data.filter(Boolean));
-  }
 }

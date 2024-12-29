@@ -13,7 +13,7 @@ export class ScheduledTaskService {
   ) {}
 
   @Interval(10000)
-  async handleCron() {
+  async createAndVerifyVotingCardsForConstituencies() {
     const year = new Date(Date.now()).getFullYear();
     const constituencies =
       await this.constituencyService.findAllWithRelations();
@@ -26,7 +26,7 @@ export class ScheduledTaskService {
           constituency,
         });
       if (existing !== undefined && existing !== null) {
-        console.log(`Taka karta juz instnieje: ${JSON.stringify(existing)}`);
+        console.log(`Taka karta juz instnieje: ${existing.id}`);
         continue;
       }
       const votingCard = await this.votingCardService.create({
@@ -41,10 +41,19 @@ export class ScheduledTaskService {
       console.log(
         `Poprawnie utworzono kartę do głosowania id: ${votingCard.id} z ${votingCard.cardAssignment.length} kandydatami`,
       );
-      return this.userMessageService.createMessageForAllAdmins({
-        message: `Poprawnie utworzono kartę do głosowania id: ${votingCard.id} z ${votingCard.cardAssignment.length} kandydatami`,
-        isDangerous: false,
-      });
+      const verifyCard =
+        await this.constituencyService.verifyVotingCardRules(constituency);
+      if (verifyCard) {
+        await this.userMessageService.createMessageForAllAdmins({
+          message: `Poprawnie utworzono kartę do głosowania id: ${votingCard.id} z ${votingCard.cardAssignment.length} kandydatami`,
+          isDangerous: false,
+        });
+      } else {
+        await this.userMessageService.createMessageForAllAdmins({
+          message: `Utworzono kartę do głosowania id: ${votingCard.id}; ale nie spełnia wymaganych reguł. Zweryfikuj i popraw ręcznie`,
+          isDangerous: true,
+        });
+      }
     }
   }
 }
