@@ -21,6 +21,17 @@ export class UserMessageService {
     if (!user) {
       throw new Error('User not found');
     }
+
+    const maybeExisting = await this.userMessageRepository.findOne({
+      where: {
+        indetifier: dto.indetifier,
+        user,
+      },
+    });
+    if (maybeExisting !== null && maybeExisting !== undefined) {
+      return; // duplicate alert
+    }
+
     const newOne = this.userMessageRepository.create({
       ...dto,
       isRead: false,

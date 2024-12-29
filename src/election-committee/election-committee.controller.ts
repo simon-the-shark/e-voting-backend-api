@@ -30,6 +30,7 @@ export class ElectionCommitteeController {
         message: 'There are no election committees',
         userId: user.id,
         isDangerous: true,
+        indetifier: `no-commitess-user-${req.userId}`,
       });
     }
     return elements;

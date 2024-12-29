@@ -6,4 +6,7 @@ export class CreateAdminMessageDto {
 
   @IsBoolean()
   isDangerous: boolean;
+
+  @IsString()
+  indetifier: string;
 }

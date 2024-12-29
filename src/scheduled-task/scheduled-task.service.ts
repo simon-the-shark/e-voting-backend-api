@@ -34,6 +34,7 @@ export class ScheduledTaskService {
         await this.userMessageService.createMessageForAllAdmins({
           message: `Błąd generacji karty do głosowania. Wykryto brak kandydatów w okręgu id: ${constituency.id}`,
           isDangerous: true,
+          indetifier: `error-0-candidates-in-id-${constituency.id}`,
         });
         console.log('Brak kandydatów w okręgu');
         continue;
@@ -57,6 +58,7 @@ export class ScheduledTaskService {
         await this.userMessageService.createMessageForAllAdmins({
           message: `Poprawnie utworzono kartę do głosowania id: ${votingCard.id} z ${newCard.cardAssignment.length} kandydatami`,
           isDangerous: false,
+          indetifier: `success-voting-card-creation-votingCardId-${votingCard.id}-len-${newCard.cardAssignment.length}`,
         });
         console.log(
           `Poprawnie utworzono kartę do głosowania id: ${votingCard.id} z ${newCard.cardAssignment.length} kandydatami`,
@@ -65,6 +67,7 @@ export class ScheduledTaskService {
         await this.userMessageService.createMessageForAllAdmins({
           message: `Utworzono kartę do głosowania id: ${votingCard.id}; ale nie spełnia wymaganych reguł. Zweryfikuj i popraw ręcznie`,
           isDangerous: true,
+          indetifier: `not-so-success-voting-card-creation-votingCardId-${votingCard.id}`,
         });
         console.log(
           `Niepoprawnie utworzono kartę do głosowania id: ${votingCard.id}`,

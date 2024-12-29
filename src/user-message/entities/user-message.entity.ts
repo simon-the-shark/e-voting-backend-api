@@ -24,4 +24,7 @@ export class UserMessage {
 
   @Column()
   isDangerous: boolean;
+
+  @Column()
+  indetifier: string;
 }

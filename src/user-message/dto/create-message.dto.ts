@@ -10,4 +10,7 @@ export class CreateMessageDto {
 
   @IsBoolean()
   isDangerous: boolean;
+
+  @IsString()
+  indetifier: string;
 }
