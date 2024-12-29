@@ -20,10 +20,6 @@ export class UsersService {
     return this.usersRepository.findOne({ where: { id } });
   }
 
-  remove(pesel: string) {
-    return this.usersRepository.delete({ pesel });
-  }
-
   async getRoles(pesel: string): Promise<UserRole[]> {
     const user = await this.usersRepository.findOne({
       where: { pesel },

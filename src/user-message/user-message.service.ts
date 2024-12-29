@@ -5,6 +5,8 @@ import { Repository } from 'typeorm';
 import { UserMessage } from './entities/user-message.entity';
 import { MessageDto } from './dto/message.dto';
 import { UsersService } from 'src/users/users.service';
+import { AdministratorService } from 'src/administrator/administrator.service';
+import { CreateAdminMessageDto } from './dto/create-admin-message.dto';
 
 @Injectable()
 export class UserMessageService {
@@ -12,6 +14,7 @@ export class UserMessageService {
     @InjectRepository(UserMessage)
     private readonly userMessageRepository: Repository<UserMessage>,
     private readonly userService: UsersService,
+    private readonly adminService: AdministratorService,
   ) {}
   async createMessage(dto: CreateMessageDto) {
     const user = await this.userService.findById(dto.userId);
@@ -24,6 +27,16 @@ export class UserMessageService {
       user,
     });
     await this.userMessageRepository.save(newOne);
+  }
+
+  async createMessageForAllAdmins(dto: CreateAdminMessageDto) {
+    const admins = await this.adminService.findAllAdminUsers();
+    for (const adminUserId of admins) {
+      this.createMessage({
+        ...dto,
+        userId: adminUserId,
+      });
+    }
   }
 
   async markAsRead(id: number) {
