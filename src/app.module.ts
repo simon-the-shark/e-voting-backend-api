@@ -19,6 +19,7 @@ import { VoteModule } from './vote/vote.module';
 import { UserMessageModule } from './user-message/user-message.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ScheduledTaskService } from './scheduled-task/scheduled-task.service';
+import { ScheduleTaskModule } from './scheduled-task/scheduled-task.module';
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import { ScheduledTaskService } from './scheduled-task/scheduled-task.service';
     CardAssignmentModule,
     VoteModule,
     UserMessageModule,
+    ScheduleTaskModule,
   ],
   controllers: [AppController],
   providers: [AppService, ScheduledTaskService],
