@@ -16,9 +16,6 @@ export class Voter {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
-  pesel: string;
-
   @Column()
   firstName: string;
 
