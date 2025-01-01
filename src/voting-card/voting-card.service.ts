@@ -33,6 +33,13 @@ export class VotingCardService {
   }
 
   async shuffleCandidates(votingCard: VotingCard, candidates: Candidate[]) {
+    // Shuffle the candidates array
+    for (let i = candidates.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+    }
+
+    // Assign shuffled candidates to the voting card
     for (let i = 0; i < candidates.length; i++) {
       await this.cardAssignmentService.create({
         candidateId: candidates[i].id,
