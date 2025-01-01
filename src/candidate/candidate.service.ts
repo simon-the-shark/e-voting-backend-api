@@ -24,8 +24,9 @@ export class CandidateService {
     updateCandidateCommitteeDto: UpdateCandidateCommitteeDto,
   ) {
     const { electionCommitteeId } = updateCandidateCommitteeDto;
-    const committe =
-      await this.electionCommitteeService.findOne(electionCommitteeId);
+    const committe = electionCommitteeId
+      ? await this.electionCommitteeService.findOne(electionCommitteeId)
+      : null;
     const candidate = await this.candidateRepository.findOne({
       where: { id },
     });

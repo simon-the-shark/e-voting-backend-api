@@ -3,5 +3,5 @@ import { IsInt, IsPositive } from 'class-validator';
 export class UpdateCandidateCommitteeDto {
   @IsInt()
   @IsPositive()
-  readonly electionCommitteeId: number;
+  readonly electionCommitteeId: number | null;
 }
