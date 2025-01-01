@@ -4,11 +4,10 @@ import { VotingCard } from './entities/voting-card.entity';
 import { VoterService } from 'src/voter/voter.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { VotingCardDetailsDto } from './dto/voting-card.dto';
-import { VotingType } from 'src/types/voting-type.enum';
 import { Candidate } from 'src/candidate/entities/candidate.entity';
 import { CardAssignmentService } from 'src/card-assignment/card-assignment.service';
-import { Constituency } from 'src/constituency/entities/constituency.entity';
 import { CreateVotingCardDTO } from './dto/create-voting-card.dto';
+import { FindVotingCardDto } from './dto/find-voting-card.dto';
 
 @Injectable()
 export class VotingCardService {
@@ -24,11 +23,7 @@ export class VotingCardService {
     return this.votingCardRepository.save(card);
   }
 
-  async findByYearAndVotingTypeAndConstituency(where: {
-    year: number;
-    votingType: VotingType;
-    constituency: Constituency;
-  }) {
+  async findByYearAndVotingTypeAndConstituency(where: FindVotingCardDto) {
     return this.votingCardRepository.findOne({ where });
   }
 
