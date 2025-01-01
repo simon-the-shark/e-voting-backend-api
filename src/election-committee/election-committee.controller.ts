@@ -6,7 +6,6 @@ import { JwtAuthGuard } from 'src/auth/jwt/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/role-auth.guard';
 import { Roles } from 'src/auth/role.decorator';
 import { UserRole } from 'src/users/entities/user-role.entity';
-import { z } from 'zod';
 import { UserMessageService } from 'src/user-message/user-message.service';
 import { User } from 'src/users/entities/user.entity';
 
@@ -21,18 +20,7 @@ export class ElectionCommitteeController {
   @Get()
   @Roles(UserRole.BoardMember)
   async getAll(@Req() req): Promise<ElectionCommitteeDto[]> {
-    const elements = z
-      .array(ElectionCommitteeDto)
-      .parse(await this.electionCommitteeService.findAll());
-    if (elements.length === 0) {
-      const user = req.user as User;
-      this.userMessageService.createMessage({
-        message: 'There are no election committees',
-        userId: user.id,
-        isDangerous: true,
-        indetifier: `no-commitess-user-${req.userId}`,
-      });
-    }
-    return elements;
+    const user = req.user as User;
+    return this.electionCommitteeService.findAllOrNotify(user);
   }
 }
