@@ -4,11 +4,11 @@ import { VotingCard } from './entities/voting-card.entity';
 import { VoterService } from 'src/voter/voter.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { VotingCardDetailsDto } from './dto/voting-card.dto';
-import { DeepPartial } from 'typeorm';
 import { VotingType } from 'src/types/voting-type.enum';
 import { Candidate } from 'src/candidate/entities/candidate.entity';
 import { CardAssignmentService } from 'src/card-assignment/card-assignment.service';
 import { Constituency } from 'src/constituency/entities/constituency.entity';
+import { CreateVotingCardDTO } from './dto/create-voting-card.dto';
 
 @Injectable()
 export class VotingCardService {
@@ -19,7 +19,7 @@ export class VotingCardService {
     private cardAssignmentService: CardAssignmentService,
   ) {}
 
-  async create(data: DeepPartial<VotingCard>) {
+  async create(data: CreateVotingCardDTO) {
     const card = this.votingCardRepository.create(data);
     return this.votingCardRepository.save(card);
   }
