@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { ElectionBoard } from './entities/election-board.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -45,6 +45,20 @@ export class ElectionBoardService {
     if (!constituencies) {
       throw new Error('Constituencies not found');
     }
+
+    if (
+      new Set(
+        constituencies.map((constituency) =>
+          constituency.votingType.toString(),
+        ),
+      ).size !== constituencies.length
+    ) {
+      throw new HttpException(
+        'Nie udało się dodać okręgu, gdyż okręg o takim typie istnieje juz w tej komisji',
+        400,
+      );
+    }
+
     electionBoard.constituencies = constituencies;
     await this.repository.save(electionBoard);
     return this.findOne(id);
