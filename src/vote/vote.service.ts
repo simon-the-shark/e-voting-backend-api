@@ -32,7 +32,7 @@ export class VoteService {
       },
       candidates: createVoteDto.candidates,
     });
-    this.voterService.markVotingCardVoted(votingCard, voter);
     await this.voteRepository.save(vote);
+    this.voterService.markVotingCardVoted(votingCard, voter);
   }
 }
