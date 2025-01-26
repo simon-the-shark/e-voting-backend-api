@@ -8,11 +8,11 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { VotingType } from 'src/types/voting-type.enum';
-import { Constituency } from 'src/constituency/entities/constituency.entity';
-import { Voter } from 'src/voter/entities/voter.entity';
-import { CardAssignment } from 'src/card-assignment/entities/card-assignment.entity';
-import { Vote } from 'src/vote/entities/vote.entity';
+import { VotingType } from '../../types/voting-type.enum';
+import { Constituency } from '../../constituency/entities/constituency.entity';
+import { Voter } from '../../voter/entities/voter.entity';
+import { CardAssignment } from '../../card-assignment/entities/card-assignment.entity';
+import { Vote } from '../../vote/entities/vote.entity';
 
 @Entity()
 export class VotingCard {

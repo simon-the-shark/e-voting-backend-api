@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 import { User } from '../../users/entities/user.entity';
-import { ElectionBoard } from 'src/election-board/entities/election-board.entity';
+import { ElectionBoard } from '../../election-board/entities/election-board.entity';
 
 @Entity()
 export class BoardMember {

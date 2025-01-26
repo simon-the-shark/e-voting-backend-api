@@ -1,6 +1,6 @@
-import { BoardMember } from 'src/board-member/entities/board-member.entity';
-import { Constituency } from 'src/constituency/entities/constituency.entity';
-import { Voter } from 'src/voter/entities/voter.entity';
+import { BoardMember } from '../../board-member/entities/board-member.entity';
+import { Constituency } from '../../constituency/entities/constituency.entity';
+import { Voter } from '../../voter/entities/voter.entity';
 import {
   Column,
   Entity,

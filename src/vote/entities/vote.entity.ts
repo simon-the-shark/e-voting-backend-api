@@ -1,5 +1,5 @@
-import { Candidate } from 'src/candidate/entities/candidate.entity';
-import { VotingCard } from 'src/voting-card/entities/voting-card.entity';
+import { Candidate } from '../../candidate/entities/candidate.entity';
+import { VotingCard } from '../../voting-card/entities/voting-card.entity';
 import {
   CreateDateColumn,
   Entity,

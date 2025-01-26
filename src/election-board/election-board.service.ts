@@ -4,7 +4,7 @@ import { ElectionBoard } from './entities/election-board.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ElectionBoardDto } from './dto/election-board.dto';
 import { UpdateElectionBoardDto } from './dto/update-election-board.dto';
-import { ConstituencyService } from 'src/constituency/constituency.service';
+import { ConstituencyService } from '../constituency/constituency.service';
 
 @Injectable()
 export class ElectionBoardService {
@@ -42,7 +42,7 @@ export class ElectionBoardService {
     const constituencies = await this.constituencyService.findByIds(
       updateElectionBoardDto.constituenciesId.map(({ id }) => id),
     );
-    if (!constituencies) {
+    if (!constituencies || constituencies.length === 0) {
       throw new Error('Constituencies not found');
     }
 

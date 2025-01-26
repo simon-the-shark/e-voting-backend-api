@@ -1,7 +1,7 @@
-import { Administrator } from 'src/administrator/entities/administrator.entity';
-import { BoardMember } from 'src/board-member/entities/board-member.entity';
-import { UserMessage } from 'src/user-message/entities/user-message.entity';
-import { Voter } from 'src/voter/entities/voter.entity';
+import { Administrator } from '../../administrator/entities/administrator.entity';
+import { BoardMember } from '../../board-member/entities/board-member.entity';
+import { UserMessage } from '../../user-message/entities/user-message.entity';
+import { Voter } from '../../voter/entities/voter.entity';
 import {
   Entity,
   Column,

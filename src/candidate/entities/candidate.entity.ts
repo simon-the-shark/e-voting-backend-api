@@ -1,7 +1,7 @@
-import { CardAssignment } from 'src/card-assignment/entities/card-assignment.entity';
-import { Constituency } from 'src/constituency/entities/constituency.entity';
-import { ElectionCommittee } from 'src/election-committee/entities/elecition-committee.entity';
-import { Vote } from 'src/vote/entities/vote.entity';
+import { CardAssignment } from '../../card-assignment/entities/card-assignment.entity';
+import { Constituency } from '../../constituency/entities/constituency.entity';
+import { ElectionCommittee } from '../../election-committee/entities/elecition-committee.entity';
+import { Vote } from '../../vote/entities/vote.entity';
 import {
   Column,
   Entity,
