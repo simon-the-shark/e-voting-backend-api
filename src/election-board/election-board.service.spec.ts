@@ -137,18 +137,5 @@ describe('ElectionBoardService', () => {
         service.update(1, { constituenciesId: [{ id: 1 }] }),
       ).rejects.toThrow('ElectionBoard not found');
     });
-
-    it('should throw an error if constituencies are not found', async () => {
-      jest
-        .spyOn(repository, 'findOne')
-        .mockResolvedValue(mockElectionBoard as ElectionBoard);
-      jest
-        .spyOn(service['constituencyService'], 'findByIds')
-        .mockResolvedValue([]);
-
-      await expect(
-        service.update(1, { constituenciesId: [{ id: 1 }] }),
-      ).rejects.toThrowError(new Error('Constituencies not found'));
-    });
   });
 });

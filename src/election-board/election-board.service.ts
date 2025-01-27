@@ -42,7 +42,7 @@ export class ElectionBoardService {
     const constituencies = await this.constituencyService.findByIds(
       updateElectionBoardDto.constituenciesId.map(({ id }) => id),
     );
-    if (!constituencies || constituencies.length === 0) {
+    if (!constituencies) {
       throw new Error('Constituencies not found');
     }
 
