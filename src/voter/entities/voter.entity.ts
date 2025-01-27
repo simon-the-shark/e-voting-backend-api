@@ -8,8 +8,8 @@ import {
   ManyToMany,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
-import { ElectionBoard } from 'src/election-board/entities/election-board.entity';
-import { VotingCard } from 'src/voting-card/entities/voting-card.entity';
+import { ElectionBoard } from '../../election-board/entities/election-board.entity';
+import { VotingCard } from '../../voting-card/entities/voting-card.entity';
 
 @Entity()
 export class Voter {

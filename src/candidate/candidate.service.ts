@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Candidate } from './entities/candidate.entity';
 import { UpdateCandidateCommitteeDto } from './dto/update-candidate-committee.dto';
-import { ElectionCommitteeService } from 'src/election-committee/election-committee.service';
+import { ElectionCommitteeService } from '../election-committee/election-committee.service';
 
 @Injectable()
 export class CandidateService {
@@ -30,6 +30,11 @@ export class CandidateService {
     const candidate = await this.candidateRepository.findOne({
       where: { id },
     });
+
+    if (!candidate) {
+      throw new Error('Candidate not found');
+    }
+
     candidate.electionCommittee = committe;
     await this.candidateRepository.save(candidate);
   }

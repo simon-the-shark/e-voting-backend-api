@@ -4,8 +4,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserMessage } from './entities/user-message.entity';
 import { MessageDto } from './dto/message.dto';
-import { UsersService } from 'src/users/users.service';
-import { AdministratorService } from 'src/administrator/administrator.service';
+import { UsersService } from '../users/users.service';
+import { AdministratorService } from '../administrator/administrator.service';
 import { CreateAdminMessageDto } from './dto/create-admin-message.dto';
 
 @Injectable()

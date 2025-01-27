@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - JavaScript Introspection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script>
+    var __options = {"flags":{"complexity":{"commonjs":true,"logicalor":true,"switchcase":true,"forin":false,"trycatch":false,"newmi":true},"jshint":{}}}
+  </script>
+
+  <link href="assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="assets/css/plato.css" rel="stylesheet">
+  <link href="assets/css/plato-overview.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a href="index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>JavaScript Source Analysis</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <h1 class="col-md-12">Summary</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Total/Average Lines <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code" data-original-title="SLOC" data-container="body"></i></h2>
+      <p class="stat">2670 / 37</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Average Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index" data-container="body"></i></a></h2>
+      <p class="stat">68.12</p>
+    </div>
+  </div>
+</div>
+<div class="container historical">
+  <div class="row">
+    <div class="col-md-6">
+      <div id="chart_historical_sloc" class="chart js-chart"></div>
+    </div>
+    <div class="col-md-6">
+      <div id="chart_historical_maint" class="chart js-chart"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container overview">
+  <div class="row">
+    <h2 class="col-md-12">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index" data-container="body"></i></a></h2>
+    <div class="col-md-12"><div id='chart_maintainability' class='chart js-chart'></div></div>
+  </div>
+  <div class="row">
+    <h2 class="col-md-12">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code" data-original-title="SLOC" data-container="body"></i></h2>
+    <div class="col-md-12"><div id='chart_sloc' class='chart js-chart'></div></div>
+  </div>
+  <div class="row">
+    <h2 class="col-md-12">Estimated errors in implementation <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+    <div class="col-md-12"><div id='chart_bugs' class='chart js-chart'></div></div>
+  </div>
+  
+  <div class="row">
+    <h2 class="col-md-12">Lint errors</h2>
+    <div class="col-md-12"><div id='chart_lint' class='chart js-chart'></div></div>
+  </div>
+  
+</div>
+
+<div class="container">
+  <div class="row">
+    <h1 class="col-md-12">Files</h1>
+  </div>
+
+  <div class="row">
+    <div class="span12 group-header">
+      <div class="btn-group">
+        <button type="button" id="button-complexity" class="btn btn-default complexity">complexity</button>
+        <button type="button" id="button-sloc" class="btn btn-default sloc">sloc</button>
+        <button type="button" id="button-bugs" class="btn btn-default bugs">est errors</button>
+        
+        <button type="button" id="button-lint" class="btn btn-default lint">lint errors</button>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    &nbsp;
+  </div>
+
+  <div class="row">
+    <ul class="file-list list-unstyled">
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_administrator_administrator_module_js/index.html">dist/administrator/administrator.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="21"
+              data-sloc="24"
+              data-bugs="0.44"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_administrator_administrator_service_js/index.html">dist/administrator/administrator.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="33"
+              data-sloc="35"
+              data-bugs="0.65"
+              data-complexity="20"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_administrator_entities_administrator_entity_js/index.html">dist/administrator/entities/administrator.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="25"
+              data-sloc="30"
+              data-bugs="0.54"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_app_controller_js/index.html">dist/app.controller.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="32"
+              data-sloc="40"
+              data-bugs="0.66"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_app_module_js/index.html">dist/app.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="51"
+              data-sloc="76"
+              data-bugs="1.09"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_app_service_js/index.html">dist/app.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="15"
+              data-sloc="20"
+              data-bugs="0.35"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_auth_auth_controller_js/index.html">dist/auth/auth.controller.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="30"
+              data-sloc="42"
+              data-bugs="0.70"
+              data-complexity="21"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_auth_auth_module_js/index.html">dist/auth/auth.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="27"
+              data-sloc="35"
+              data-bugs="0.55"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_auth_auth_service_js/index.html">dist/auth/auth.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="31"
+              data-sloc="42"
+              data-bugs="0.66"
+              data-complexity="19"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_auth_dto_auth_dto_js/index.html">dist/auth/dto/auth.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="5"
+              data-sloc="7"
+              data-bugs="0.03"
+              data-complexity="1"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_auth_jwt_jwt_auth_guard_js/index.html">dist/auth/jwt/jwt-auth.guard.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="18"
+              data-sloc="18"
+              data-bugs="0.37"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_auth_jwt_jwt_strategy_js/index.html">dist/auth/jwt/jwt.strategy.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="25"
+              data-sloc="33"
+              data-bugs="0.58"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_auth_role_decorator_js/index.html">dist/auth/role.decorator.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="10"
+              data-sloc="7"
+              data-bugs="0.06"
+              data-complexity="1"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_board_member_board_member_module_js/index.html">dist/board-member/board-member.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="23"
+              data-sloc="25"
+              data-bugs="0.47"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_board_member_board_member_service_js/index.html">dist/board-member/board-member.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="41"
+              data-sloc="43"
+              data-bugs="0.75"
+              data-complexity="20"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_board_member_dto_create_board_member_dto_js/index.html">dist/board-member/dto/create-board-member.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="17"
+              data-sloc="21"
+              data-bugs="0.41"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_board_member_entities_board_member_entity_js/index.html">dist/board-member/entities/board-member.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="31"
+              data-sloc="36"
+              data-bugs="0.63"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_candidate_candidate_controller_js/index.html">dist/candidate/candidate.controller.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="51"
+              data-sloc="61"
+              data-bugs="1.04"
+              data-complexity="20"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_candidate_candidate_module_js/index.html">dist/candidate/candidate.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="27"
+              data-sloc="32"
+              data-bugs="0.52"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_candidate_candidate_service_js/index.html">dist/candidate/candidate.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="38"
+              data-sloc="50"
+              data-bugs="0.78"
+              data-complexity="21"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_candidate_dto_candidate_dto_js/index.html">dist/candidate/dto/candidate.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="8"
+              data-sloc="14"
+              data-bugs="0.15"
+              data-complexity="1"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_candidate_dto_update_candidate_committee_dto_js/index.html">dist/candidate/dto/update-candidate-committee.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="18"
+              data-sloc="22"
+              data-bugs="0.42"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_candidate_entities_candidate_entity_js/index.html">dist/candidate/entities/candidate.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="48"
+              data-sloc="64"
+              data-bugs="1.01"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_card_assignment_card_assignment_module_js/index.html">dist/card-assignment/card-assignment.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="21"
+              data-sloc="24"
+              data-bugs="0.44"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_card_assignment_card_assignment_service_js/index.html">dist/card-assignment/card-assignment.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="31"
+              data-sloc="35"
+              data-bugs="0.62"
+              data-complexity="20"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_card_assignment_dto_create_assignment_dto_js/index.html">dist/card-assignment/dto/create-assignment.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="22"
+              data-sloc="32"
+              data-bugs="0.52"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_card_assignment_entities_card_assignment_entity_js/index.html">dist/card-assignment/entities/card-assignment.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="34"
+              data-sloc="44"
+              data-bugs="0.76"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_constituency_constituency_controller_js/index.html">dist/constituency/constituency.controller.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="34"
+              data-sloc="41"
+              data-bugs="0.68"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_constituency_constituency_module_js/index.html">dist/constituency/constituency.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="27"
+              data-sloc="28"
+              data-bugs="0.52"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_constituency_constituency_service_js/index.html">dist/constituency/constituency.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="51"
+              data-sloc="74"
+              data-bugs="0.99"
+              data-complexity="23"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_constituency_dto_constituency_dto_js/index.html">dist/constituency/dto/constituency.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="5"
+              data-sloc="7"
+              data-bugs="0.03"
+              data-complexity="1"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_constituency_entities_constituency_entity_js/index.html">dist/constituency/entities/constituency.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="41"
+              data-sloc="53"
+              data-bugs="0.86"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_election_board_dto_election_board_dto_js/index.html">dist/election-board/dto/election-board.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="5"
+              data-sloc="7"
+              data-bugs="0.03"
+              data-complexity="1"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_election_board_dto_update_election_board_dto_js/index.html">dist/election-board/dto/update-election-board.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="20"
+              data-sloc="24"
+              data-bugs="0.44"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_election_board_election_board_controller_js/index.html">dist/election-board/election-board.controller.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="51"
+              data-sloc="71"
+              data-bugs="1.12"
+              data-complexity="20"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_election_board_election_board_module_js/index.html">dist/election-board/election-board.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="29"
+              data-sloc="34"
+              data-bugs="0.55"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_election_board_election_board_service_js/index.html">dist/election-board/election-board.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="51"
+              data-sloc="64"
+              data-bugs="0.97"
+              data-complexity="23"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_election_board_entities_election_board_entity_js/index.html">dist/election-board/entities/election-board.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="39"
+              data-sloc="56"
+              data-bugs="0.89"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_election_committee_dto_election_committe_dto_js/index.html">dist/election-committee/dto/election-committe.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="6"
+              data-sloc="9"
+              data-bugs="0.08"
+              data-complexity="1"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_election_committee_election_committee_controller_js/index.html">dist/election-committee/election-committee.controller.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="43"
+              data-sloc="49"
+              data-bugs="0.82"
+              data-complexity="20"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_election_committee_election_committee_module_js/index.html">dist/election-committee/election-committee.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="27"
+              data-sloc="32"
+              data-bugs="0.52"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_election_committee_election_committee_service_js/index.html">dist/election-committee/election-committee.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="46"
+              data-sloc="54"
+              data-bugs="0.85"
+              data-complexity="21"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_election_committee_entities_elecition_committee_entity_js/index.html">dist/election-committee/entities/elecition-committee.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="26"
+              data-sloc="33"
+              data-bugs="0.58"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_scheduled_task_scheduled_task_module_js/index.html">dist/scheduled-task/scheduled-task.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="23"
+              data-sloc="25"
+              data-bugs="0.46"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_scheduled_task_scheduled_task_service_js/index.html">dist/scheduled-task/scheduled-task.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="51"
+              data-sloc="88"
+              data-bugs="1.24"
+              data-complexity="23"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_types_voting_type_enum_js/index.html">dist/types/voting-type.enum.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="18"
+              data-sloc="23"
+              data-bugs="0.26"
+              data-complexity="2"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_user_message_dto_create_admin_message_dto_js/index.html">dist/user-message/dto/create-admin-message.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="19"
+              data-sloc="29"
+              data-bugs="0.49"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_user_message_dto_create_message_dto_js/index.html">dist/user-message/dto/create-message.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="21"
+              data-sloc="34"
+              data-bugs="0.55"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_user_message_dto_mark_read_message_dto_js/index.html">dist/user-message/dto/mark-read-message.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="5"
+              data-sloc="7"
+              data-bugs="0.03"
+              data-complexity="1"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_user_message_dto_message_dto_js/index.html">dist/user-message/dto/message.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="20"
+              data-sloc="30"
+              data-bugs="0.51"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_user_message_entities_user_message_entity_js/index.html">dist/user-message/entities/user-message.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="30"
+              data-sloc="46"
+              data-bugs="0.71"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_user_message_user_message_module_js/index.html">dist/user-message/user-message.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="29"
+              data-sloc="34"
+              data-bugs="0.55"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_user_message_user_message_service_js/index.html">dist/user-message/user-message.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="51"
+              data-sloc="88"
+              data-bugs="1.07"
+              data-complexity="23"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_users_entities_user_role_entity_js/index.html">dist/users/entities/user-role.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="7"
+              data-sloc="10"
+              data-bugs="0.07"
+              data-complexity="2"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_users_entities_user_entity_js/index.html">dist/users/entities/user.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="41"
+              data-sloc="52"
+              data-bugs="0.87"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_users_users_module_js/index.html">dist/users/users.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="21"
+              data-sloc="24"
+              data-bugs="0.44"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_users_users_service_js/index.html">dist/users/users.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="44"
+              data-sloc="60"
+              data-bugs="0.92"
+              data-complexity="23"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_vote_dto_create_vote_dto_js/index.html">dist/vote/dto/create-vote.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="19"
+              data-sloc="26"
+              data-bugs="0.47"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_vote_entities_vote_entity_js/index.html">dist/vote/entities/vote.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="33"
+              data-sloc="44"
+              data-bugs="0.75"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_vote_vote_controller_js/index.html">dist/vote/vote.controller.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="49"
+              data-sloc="50"
+              data-bugs="0.87"
+              data-complexity="20"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_vote_vote_module_js/index.html">dist/vote/vote.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="29"
+              data-sloc="34"
+              data-bugs="0.55"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_vote_vote_service_js/index.html">dist/vote/vote.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="42"
+              data-sloc="55"
+              data-bugs="0.89"
+              data-complexity="22"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_voter_entities_voter_entity_js/index.html">dist/voter/entities/voter.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="41"
+              data-sloc="60"
+              data-bugs="0.92"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_voter_voter_module_js/index.html">dist/voter/voter.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="23"
+              data-sloc="25"
+              data-bugs="0.47"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_voter_voter_service_js/index.html">dist/voter/voter.service.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="37"
+              data-sloc="53"
+              data-bugs="0.74"
+              data-complexity="20"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_voting_card_dto_create_voting_card_dto_js/index.html">dist/voting-card/dto/create-voting-card.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="5"
+              data-sloc="7"
+              data-bugs="0.03"
+              data-complexity="1"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_voting_card_dto_find_voting_card_dto_js/index.html">dist/voting-card/dto/find-voting-card.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="5"
+              data-sloc="7"
+              data-bugs="0.03"
+              data-complexity="1"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_voting_card_dto_voting_card_details_dto_js/index.html">dist/voting-card/dto/voting-card-details.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="8"
+              data-sloc="14"
+              data-bugs="0.14"
+              data-complexity="1"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_voting_card_dto_voting_card_dto_js/index.html">dist/voting-card/dto/voting-card.dto.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="10"
+              data-sloc="26"
+              data-bugs="0.30"
+              data-complexity="1"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_voting_card_entities_voting_card_entity_js/index.html">dist/voting-card/entities/voting-card.entity.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="47"
+              data-sloc="67"
+              data-bugs="1.05"
+              data-complexity="18"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_voting_card_voting_card_controller_js/index.html">dist/voting-card/voting-card.controller.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="51"
+              data-sloc="70"
+              data-bugs="1.22"
+              data-complexity="21"
+          ></span>
+        </div>
+      </li>
+      
+      <li class="col-md-12">
+        <div class="row">
+          <span class="fade-left fadeout visible-large"></span>
+          <span class="col-md-4 file"><a class="file-link" href="./files/dist_voting_card_voting_card_module_js/index.html">dist/voting-card/voting-card.module.js</a></span>
+        <span class="col-md-8 file-chart js-file-chart"
+              data-lint="29"
+              data-sloc="34"
+              data-bugs="0.55"
+              data-complexity="14"
+          ></span>
+        </div>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/javascript" src="assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="assets/scripts/plato-overview.js"></script>
+<script type="text/javascript" src="assets/scripts/plato-sortable-file-list.js"></script>
+</body>
+</html>

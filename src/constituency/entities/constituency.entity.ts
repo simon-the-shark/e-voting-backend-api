@@ -1,7 +1,8 @@
-import { Candidate } from 'src/candidate/entities/candidate.entity';
-import { ElectionBoard } from 'src/election-board/entities/election-board.entity';
-import { VotingType } from 'src/types/voting-type.enum';
-import { VotingCard } from 'src/voting-card/entities/voting-card.entity';
+import { Candidate } from '../../candidate/entities/candidate.entity';
+import { ElectionBoard } from '../../election-board/entities/election-board.entity';
+import { VotingCard } from '../../voting-card/entities/voting-card.entity';
+import { VotingType } from '../../types/voting-type.enum';
+
 import {
   Column,
   Entity,

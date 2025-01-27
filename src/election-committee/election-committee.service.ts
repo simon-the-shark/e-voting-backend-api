@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ElectionCommittee } from './entities/elecition-committee.entity';
-import { UserMessageService } from 'src/user-message/user-message.service';
-import { User } from 'src/users/entities/user.entity';
+import { UserMessageService } from '../user-message/user-message.service';
+import { User } from '../users/entities/user.entity';
 import { ElectionCommitteeDto } from './dto/election-committe.dto';
 import { z } from 'zod';
 

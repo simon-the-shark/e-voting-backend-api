@@ -1,10 +1,10 @@
 import { Body, Controller, Patch, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt/jwt-auth.guard';
-import { RolesGuard } from 'src/auth/role-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard';
+import { RolesGuard } from '../auth/role-auth.guard';
 import { ElectionBoardService } from './election-board.service';
 import { Get } from '@nestjs/common';
-import { Roles } from 'src/auth/role.decorator';
-import { UserRole } from 'src/users/entities/user-role.entity';
+import { Roles } from '../auth/role.decorator';
+import { UserRole } from '../users/entities/user-role.entity';
 import { Param } from '@nestjs/common';
 import { UpdateElectionBoardDto } from './dto/update-election-board.dto';
 
